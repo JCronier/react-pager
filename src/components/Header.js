@@ -1,5 +1,3 @@
-import Login from './Login.js'
-
 const Header = ({title}) => {
     return (
         <header className='header'>
