@@ -14,8 +14,9 @@ const Login = ({verifyUser}) => {
     }
     return (
         <form onSubmit={onSubmit}>
+            <h3>Login</h3>
             <input type='text' value={text} onChange={(e)=>setText(e.target.value)} />
-            <input type ='submit' value ='enter'/>
+            <input type ='submit' value ='Enter'/>
         </form>
     )
 }
