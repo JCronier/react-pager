@@ -1,8 +1,8 @@
 import User from './User'
-const Users = ({users,onDelete}) => {
+const Users = ({currUser,onDelete}) => {
     return (
         <div>
-            {users.map((user,index)=>(<User key={index} user={user} onDelete={onDelete}/>))}
+            {currUser.users.map(user=>(<User key={user} user={user} currUser={currUser} onDelete={onDelete}/>))}
         </div>
     )
 }

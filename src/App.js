@@ -16,7 +16,6 @@ function App() {
       email:'test@netflare.dev',
       users:['test2@netflare.dev','test3@netflare.dev']
     }
-    
   ])
 
   //current login
@@ -41,7 +40,7 @@ function App() {
   return (
     <div className='container'>
       <Header title='Netflare'/>
-      {showLogin? <Login verifyUser={verifyUser}/>:<Loggedin currLogin={currLogin} logins={logins} setLogins={setLogins}/>}
+      {showLogin ? <Login verifyUser={verifyUser}/>:<Loggedin currLogin={currLogin} setCurrLogin={setCurrLogin} logins={logins} setLogins={setLogins}/>}
     </div>
   );
 }

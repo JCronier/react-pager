@@ -1,8 +1,8 @@
 import {FaTimes} from 'react-icons/fa'
-const User = ({user,onDelete}) => {
+const User = ({currUser, user,onDelete}) => {
     return (
         <div>
-            <h4>{user}<FaTimes style={{color:'red', cursor:'crosshair'}} onClick={()=>onDelete(user)}/></h4>
+            <h4>{user}<FaTimes style={{color:'red', cursor:'crosshair'}} onClick={()=>onDelete(currUser.email, user)}/></h4>
         </div>
     )
 }
