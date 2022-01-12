@@ -12,7 +12,7 @@ const emailEndPoint = '/email';
 
 const headers = {
     'Content-Type': 'application/json',
-    'x-api-key': '097ubZybcb9ECVEQUTZ6M8caWPzBZXz7aHdFsqS7'
+    'x-api-key': 'to4IMVwNqz3Btx3jOH9NLz289adm9xK9OwNgKb41'
 };
 
 const body = {
