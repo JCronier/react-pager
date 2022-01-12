@@ -10,13 +10,19 @@ function App() {
       id:1,
       email:'myron_yung@netflare.dev',
       users:['johnny@netflare.dev','jordan@netflare.dev']
+    },
+    {
+      id:2,
+      email:'test@netflare.dev',
+      users:['test2@netflare.dev','test3@netflare.dev']
     }
+    
   ])
 
   //current login
   const [currLogin,setCurrLogin]=useState({})
   
-  //login page
+  //login page state
   const [showLogin,setShowLogin]=useState(true)
 
    //check if user is registered  
@@ -30,14 +36,12 @@ function App() {
     }
   }
 
-  //delete user
-  const deleteUser=(user)=>{
-    console.log(user)
-  }
+  
+
   return (
     <div className='container'>
       <Header title='Netflare'/>
-      {showLogin? <Login verifyUser={verifyUser}/>:<Loggedin login={currLogin} onDelete={deleteUser}/>}
+      {showLogin? <Login verifyUser={verifyUser}/>:<Loggedin currLogin={currLogin} logins={logins} setLogins={setLogins}/>}
     </div>
   );
 }

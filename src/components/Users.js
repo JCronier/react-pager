@@ -2,7 +2,7 @@ import User from './User'
 const Users = ({users,onDelete}) => {
     return (
         <div>
-            {users.map((user)=>(<User user={user} onDelete={onDelete}/>))}
+            {users.map((user,index)=>(<User key={index} user={user} onDelete={onDelete}/>))}
         </div>
     )
 }
