@@ -36,12 +36,10 @@ function App() {
     }
   }
 
-  
-
   return (
     <div className='container'>
       <Header title='Netflare'/>
-      {showLogin? <Login verifyUser={verifyUser}/>:<Loggedin currLogin={currLogin} logins={logins} setLogins={setLogins}/>}
+      {showLogin? <Login verifyUser={verifyUser}/>:<Loggedin currLogin={currLogin} setCurrlogin={setCurrLogin} logins={logins} setLogins={setLogins}/>}
     </div>
   );
 }
