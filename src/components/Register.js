@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { registerUser } from '../api/index';
 
+// help from https://youtu.be/AWLgf_xfd_w channel edutechional
 class Register extends Component {
     constructor(props) {
         super(props);
