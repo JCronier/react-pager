@@ -37,9 +37,9 @@ function App() {
 
   return (
     <div className='container'>
-      <ul>
+      {/* <ul>
         {users.map(user => <li>{user.name}</li>)}
-      </ul>
+      </ul> */}
       <Header title='Netflare'/>
       {showLogin ? <Login verifyUser={verifyUser}/>:<Loggedin currLogin={currLogin} setCurrLogin={setCurrLogin} logins={logins} setLogins={setLogins}/>}
     </div>
