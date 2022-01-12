@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const api_url = 'https://0gy9ldsaqj.execute-api.us-west-2.amazonaws.com/prod';
+const api_url = 'https://ofwrz4w174.execute-api.us-west-2.amazonaws.com/backend';
 
 const token = "";
 
 const registerEndPoint = '/register';
 const usersEndpoint = '/users';
+const userEndpoint = '/users/user';
 const loginEndPoint = '/login';
 const emailEndPoint = '/email';
 
@@ -31,16 +32,13 @@ export const registerUser = (userData) => axios.post(api_url + registerEndPoint,
 export const loginUser = (userData) => axios.post(api_url + loginEndPoint, userData)
 
 // get all users
-export const getUsers = () => axios.get(api_url);
+export const getUsers = () => axios.get(api_url + usersEndpoint);
 
 // get a user
-export const getUser = (id) => axios.get(`${api_url}${usersEndpoint}/${id}`, { headers });
-
-// create user
-export const createUser = (data) => axios.post(api_url + usersEndpoint, { headers, data});
+export const getUser = (email) => axios.get(`${api_url}${userEndpoint}?email=${email}`, { headers });
 
 // delete a user
-export const deleteUser = (id) => axios.delete(`${api_url}${usersEndpoint}/${id}`, { headers });
+export const deleteUser = (email) => axios.delete(`${api_url}${usersEndpoint}?email=${email}`, { headers });
 
 // send an email
 export const sendEmail = (data) => axios.post(api_url + emailEndPoint, { headers, data })

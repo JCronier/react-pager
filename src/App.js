@@ -11,7 +11,7 @@ function App() {
   const [logins,setLogins]=useState([
     {
       id:1,
-      email:'myron_yung@netflare.dev',
+      email:'jcronier777@gmail.com',
       users:['johnny@netflare.dev','jordan@netflare.dev']
     },
     {
