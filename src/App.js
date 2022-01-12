@@ -35,8 +35,6 @@ function App() {
     }
   }
 
-  
-
   return (
     <div className='container'>
       <Header title='Netflare'/>
