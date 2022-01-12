@@ -2,7 +2,7 @@
   "name": "react-pager",
   "version": "0.1.0",
   "private": true,
-  "proxy": "",
+  "proxy": "https://0gy9ldsaqj.execute-api.us-west-2.amazonaws.com/prod/",
   "dependencies": {
     "@mui/material": "^5.2.8",
     "@testing-library/jest-dom": "^5.16.1",

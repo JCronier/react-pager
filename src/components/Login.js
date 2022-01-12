@@ -3,7 +3,7 @@ const Login = () => {
     return (
         <div>
             <input type='text'/>
-            <Button/>
+            <Button>Submit</Button>
         </div>
     )
 }
