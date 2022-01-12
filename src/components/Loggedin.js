@@ -5,7 +5,6 @@ const Loggedin = ({setCurrLogin, currLogin,logins,setLogins}) =>
     const deleteUser=(currLogin,user)=>{
         let res =logins.map((l)=>l.email===currLogin.email ? {...l,users:l.users.filter((u)=>u!==user)} : l)
         console.log(res)
-        setLogins(res)
         setCurrLogin(res[0])
     }
 

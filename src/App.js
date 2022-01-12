@@ -37,6 +37,9 @@ function App() {
 
   return (
     <div className='container'>
+      <ul>
+        {users.map(user => <li>{user.name}</li>)}
+      </ul>
       <Header title='Netflare'/>
       {showLogin ? <Login verifyUser={verifyUser}/>:<Loggedin currLogin={currLogin} setCurrLogin={setCurrLogin} logins={logins} setLogins={setLogins}/>}
     </div>
@@ -44,3 +47,4 @@ function App() {
 }
 
 export default App;
+
