@@ -1,5 +1,5 @@
 import Users from './Users'
-const Loggedin = ({setCurrLogin,currLogin,logins,setLogins}) => 
+const Loggedin = ({setCurrLogin, currLogin,logins,setLogins}) => 
 {
     //delete user
     const deleteUser=(currLogin,user)=>{
