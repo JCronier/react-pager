@@ -1,8 +1,11 @@
+import {useState,useEffect} from 'react'
+
 import './App.css'
 import Header from './components/Header'
 import Login from './components/Login'
 import Loggedin from './components/Loggedin'
-import {useState,useEffect} from 'react'
+import Register from './components/Register'
+
 function App() {
   //logins state
   const [logins,setLogins]=useState([
@@ -41,6 +44,7 @@ function App() {
         {users.map(user => <li>{user.name}</li>)}
       </ul> */}
       <Header title='Netflare'/>
+      <Register />
       {showLogin ? <Login verifyUser={verifyUser}/>:<Loggedin currLogin={currLogin} setCurrLogin={setCurrLogin} logins={logins} setLogins={setLogins}/>}
     </div>
   );
