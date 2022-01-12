@@ -1,9 +1,9 @@
 import Users from './Users'
-const Loggedin = ({users,onDelete}) => {
+const Loggedin = ({login,onDelete}) => {
     return (
         <div>
-            <h3>Hi</h3>
-            <Users users={users} onDelete={onDelete}/>
+            <h3>Hi {login.email}</h3>
+            <Users users={login.users} onDelete={onDelete}/>
         </div>
     )
 }
