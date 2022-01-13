@@ -25,6 +25,16 @@ const body = {
 
 /** Don't need authorization */
 
+//getUsers function
+// const getLogins =()=>{
+//     getUsers().then((response)=>{
+//       const res = response.data
+//       //setLogins(res)
+//       console.log(res)
+//     }).catch((error)=>console.error(`Error: ${error}`))
+//   }
+//     getLogins()
+//   }
 // register a user 
 export const registerUser = (userData) => axios.post(api_url + registerEndPoint, userData);
 
@@ -42,4 +52,3 @@ export const deleteUser = (email) => axios.delete(`${api_url}${usersEndpoint}?em
 
 // send an email
 export const sendEmail = (data) => axios.post(api_url + emailEndPoint, { headers, data })
-
