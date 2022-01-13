@@ -1,7 +1,17 @@
+import { UserContext } from '../context/UserContext';
+import { useContext, useEffect } from "react";
+import { getUsers } from '../api';
 import AddUserForm from './AddUserForm'
 import Users from './Users'
 const Loggedin = ({setCurrLogin, currLogin,logins,setLogins}) => 
 {
+    const { state, dispatch } = useContext(UserContext);
+    useEffect(() => {
+        getUsers().then(({ data }) => {
+            dispatch({type: 'SET_USERS', value: data.users })
+        //   setLogins(data.data.users);
+        });
+      }, []);
     //delete user
     const deleteUser=(currLogin,user)=>{
         let res =logins.map((l)=>l.email===currLogin.email ? {...l,users:l.users.filter((u)=>u!==user)} : l)

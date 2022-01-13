@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api_url = 'https://0gy9ldsaqj.execute-api.us-west-2.amazonaws.com/prod';
+const api_url = process.env.REACT_APP_API_URL;
 
 const token = "";
 
@@ -11,7 +11,7 @@ const emailEndPoint = '/email';
 
 const headers = {
     'Content-Type': 'application/json',
-    'x-api-key': '097ubZybcb9ECVEQUTZ6M8caWPzBZXz7aHdFsqS7'
+    'x-api-key': process.env.REACT_APP_API_KEY
 };
 
 const body = {
@@ -28,10 +28,10 @@ const body = {
 export const registerUser = (userData) => axios.post(api_url + registerEndPoint, userData);
 
 // login user
-export const loginUser = (userData) => axios.post(api_url + loginEndPoint, userData)
+export const loginUser = (userData) => axios.post(api_url + loginEndPoint, userData, { headers }  );
 
 // get all users
-export const getUsers = () => axios.get(api_url);
+export const getUsers = () => axios.get(api_url + '/users', { headers });
 
 // get a user
 export const getUser = (id) => axios.get(`${api_url}${usersEndpoint}/${id}`, { headers });
