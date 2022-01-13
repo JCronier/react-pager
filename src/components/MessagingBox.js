@@ -1,9 +1,8 @@
-import { unmountComponentAtNode } from "react-dom";
 import { useState } from 'react';
 
 import { sendEmail } from "../api/index";
 
-const MessagingBox = ({currLogin, userClicked}) => {
+const MessagingBox = ({userClicked}) => {
     const recipientEmail = userClicked.email;
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
