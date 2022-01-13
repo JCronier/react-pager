@@ -7,7 +7,7 @@ const AddUserForm = ({currLogin,onAdd}) => {
     const[email,setEmail]=useState('');
     const [name, setName] = useState('');
 
-    const { dispatch } = useContext(UserContext);
+    const { state, dispatch } = useContext(UserContext);
 
     //enter button event
     const onSubmit=(e)=>{

@@ -3,9 +3,9 @@ import Header from "./components/Header";
 import Login from "./components/Login";
 import Loggedin from "./components/Loggedin";
 import { useContext, useState, useEffect } from "react";
-import { UserContext, UserContextProvider } from "./context/UserContext";
+import { UserContext } from "./context/UserContext";
 function App() {
-  const { state } = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
   //all logins state
   const [logins, setLogins] = useState([]);
 
