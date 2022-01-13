@@ -4,6 +4,7 @@ import { unmountComponentAtNode } from "react-dom";
 import AddUserForm from './AddUserForm'
 import MessagingBox from "./MessagingBox";
 import Users from './Users'
+import { deleteUser as removeUser,createUser } from '../api'
 
 const Loggedin = ({currLogin,users,setUsers}) => 
 {
@@ -11,20 +12,16 @@ const Loggedin = ({currLogin,users,setUsers}) =>
     const [User, setUser] = useState(null);
 
     //delete user
-    const deleteUser= async(user)=>{
-        await fetch(`http://localhost:5005/users/${user.id}`,{method: 'DELETE'})
-        setUsers(users.filter((u)=>u!==user))
+    const deleteUser= (user)=>{
+        removeUser(user.email).then((response)=>setUsers(users.filter((u)=>u!==user))
+        ).catch((error)=>console.error(`Error: ${error}`))
+
     }
 
     //add user
-    const addUser = async(user)=>{
-        const res = await fetch('http://localhost:5005/users',
-        { method: 'POST', 
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(user)
-        })
-        const data = await res.json()
-        setUsers([...users,user])
+    const addUser = (user)=>{
+        createUser(user).then((response)=>setUsers([...users,user])
+        ).catch((error)=>console.error(`Error: ${error}`))
     }
 
     const onUserClicked = (User) => {
@@ -43,8 +40,8 @@ const Loggedin = ({currLogin,users,setUsers}) =>
 
     return (
         <div>
-            <h3>Hi {currLogin.email}</h3>
-            <Users users={users} onDelete={deleteUser} onUserClicked={onUserClicked}/>
+            <h3>Hi {currLogin.name}</h3>
+            <Users users={users} currLogin ={currLogin} onDelete={deleteUser} onUserClicked={onUserClicked}/>
             <AddUserForm users={users} onAdd={addUser}/>
             {
                 isMessagingBoxOpen ? <MessagingBox userClicked={User} onExitClicked={onExitClicked}/> : <div></div>

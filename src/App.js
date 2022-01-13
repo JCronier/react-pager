@@ -9,21 +9,7 @@ import { getUsers } from './api'
 
 function App() {
   //logins state
-  const [logins,setLogins]=useState([
-    {
-      id:1,
-      email:'jcronier777@gmail.com',
-      users:['johnny@netflare.dev','jordan@netflare.dev']
-    },
-    {
-      id:2,
-      email:'test@netflare.dev',
-      users:['test2@netflare.dev','test3@netflare.dev']
-    }
-  ])
-
-  //all users state
-  const [users,setUsers]=useState([])
+  const [logins,setLogins]=useState([])
 
   //current login
   const [currLogin,setCurrLogin]=useState({})
@@ -33,33 +19,16 @@ function App() {
 
   //fetch logins
   useEffect(()=>{
-    const getLogins =()=>{
-      getUsers().then((response)=>{
-        const res = response.data
-        //setLogins(res)
-        console.log(res)
-      }).catch((error)=>console.error(`Error: ${error}`))
-    }
-      getLogins()
+    getUsers().then((response)=>setLogins(response.data.users)
+    ).catch((error)=>console.error(`Error: ${error}`))  
     },[])
     
-    // //fetch users
-    // useEffect(()=>{
-    //   const getUsers =async()=>{
-    //     const res =await fetch('http://localhost:5005/users')
-    //     const data = await res.json()
-    //     setUsers(data)
-    //   }
-    //     getUsers()
-    //   },[])
-
    //check if login is registered  
   const verifyLogin = (login)=>{
     let res =logins.find((l)=>l.email===login)
     if(res){
       setShowLogin(false)
       setCurrLogin(res)
-      console.log(res)
     }else{
       alert('Not a registered user')
     }
@@ -71,8 +40,8 @@ function App() {
         {users.map(user => <li>{user.name}</li>)}
       </ul> */}
       <Header title='Netflare'/>
-      <Register />
-      {showLogin ? <Login  verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={users} setUsers={setUsers}/>}
+      {/* <Register /> */}
+      {showLogin ? <Login  verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins}/>}
     </div>
   );
 }
