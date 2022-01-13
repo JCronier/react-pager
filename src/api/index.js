@@ -35,3 +35,6 @@ export const deleteUser = (email) => axios.delete(`${api_url}${usersEndpoint}/us
 
 // send an email
 export const sendEmail = (data) => axios.post(api_url + emailEndPoint, { headers, data })
+
+// verify
+export const verifyToken = (body) => axios.post(api_url + '/verify', body, { headers });
