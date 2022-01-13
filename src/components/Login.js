@@ -1,8 +1,8 @@
 import { useState } from "react"
-const Login = ({verifyUser}) => {
+const Login = ({verifyLogin}) => {
     //login input state
     const [text,setText]=useState('')
-    
+
     //enter button event
     const onSubmit=(e)=>{
         e.preventDefault()
@@ -10,7 +10,7 @@ const Login = ({verifyUser}) => {
             alert('Provide a username')
             return
         }
-        verifyUser(text)
+        verifyLogin(text)
         setText('')
     }
     return (

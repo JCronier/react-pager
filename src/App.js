@@ -7,34 +7,42 @@ function App() {
   //all logins state
   const [logins,setLogins]=useState([])
 
+  //all users state
+  const [users,setUsers]=useState([])
+
   //current login
   const [currLogin,setCurrLogin]=useState({})
   
   //login page state
   const [showLogin,setShowLogin]=useState(true)
 
+  //fetch logins
   useEffect(()=>{
     const getLogins =async()=>{
-      const loginsFromServer= await fetchLogins()
-      setLogins(loginsFromServer)
-      
+      const res =await fetch('http://localhost:5005/logins')
+      const data = await res.json()
+      setLogins(data)
     }
       getLogins()
     },[])
+    
+    //fetch users
+    useEffect(()=>{
+      const getUsers =async()=>{
+        const res =await fetch('http://localhost:5005/users')
+        const data = await res.json()
+        setUsers(data)
+      }
+        getUsers()
+      },[])
 
-    //fetch logins
-    const fetchLogins =async()=>{
-      const res =await fetch('http://localhost:5005/logins')
-      const data = await res.json()
-      return data
-    }
-
-   //check if user is registered  
-  const verifyUser = (user)=>{
-    let res =logins.find((login)=>login.email===user)
+   //check if login is registered  
+  const verifyLogin = (login)=>{
+    let res =logins.find((l)=>l.email===login)
     if(res){
       setShowLogin(false)
       setCurrLogin(res)
+      console.log(res)
     }else{
       alert('Not a registered user')
     }
@@ -46,7 +54,7 @@ function App() {
         {users.map(user => <li>{user.name}</li>)}
       </ul> */}
       <Header title='Netflare'/>
-      {showLogin ? <Login verifyUser={verifyUser}/>:<Loggedin currLogin={currLogin} setCurrLogin={setCurrLogin} logins={logins} setLogins={setLogins}/>}
+      {showLogin ? <Login verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={users} setUsers={setUsers}/>}
     </div>
   );
 }

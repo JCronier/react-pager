@@ -1,24 +1,24 @@
 import { useState } from "react"
 
-const AddUserForm = ({currLogin,onAdd}) => {
+const AddUserForm = ({onAdd}) => {
     //add user input state
-    const[text,setText]=useState('')
+    const[email,setEmail]=useState('')
 
     //enter button event
     const onSubmit=(e)=>{
         e.preventDefault()
-        if(!text){
+        if(!email){
             alert('Provide a user')
             return
         }
-        onAdd(currLogin,text)
-        setText('')
+        onAdd({email})
+        setEmail('')
     }
     return (
         <div>
             <form onSubmit={onSubmit}>
                 <label>Add User</label>
-                <input type='text' value={text} onChange={(e)=>setText(e.target.value)} />
+                <input type='text' value={email} onChange={(e)=>setEmail(e.target.value)} />
                 <input type ='submit' value ='Add'/>
             </form>
         </div>
