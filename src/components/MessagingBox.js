@@ -1,6 +1,8 @@
 import { unmountComponentAtNode } from "react-dom";
 import { useState } from 'react';
 
+import { sendEmail } from "../api/index";
+
 const MessagingBox = ({currLogin, userClicked}) => {
     const recipientEmail = userClicked.email;
     const [subject, setSubject] = useState('');
@@ -11,7 +13,15 @@ const MessagingBox = ({currLogin, userClicked}) => {
     }
 
     const onSendClicked = (event) => {
-        // TODO use SNS to send the message to email
+        const messageBeingSent = event.target.value.message;
+        console.log('message being sent: ', messageBeingSent);
+        sendEmail(messageBeingSent).then((response) => {
+            console.log('response: ', response);
+            console.log('recipientEmail: ', recipientEmail);
+            console.log('message sent: ', message);
+        }).catch(err => {
+            console.log('email send error: ', err);
+        });
         alert('message sent');
     }
 
@@ -25,8 +35,8 @@ const MessagingBox = ({currLogin, userClicked}) => {
 
     return (
         <div id="messagingBox">
-            <div style={{display: 'flex'}}>
-                <span>
+            <div>
+                <span style={{display: 'flex'}}>
                     <header className='header'>
                         <h5>{userClicked.name}</h5>
                     </header>
@@ -43,7 +53,7 @@ const MessagingBox = ({currLogin, userClicked}) => {
                 <input type="text" value={message} placeholder="Message" onChange={onMessageInputChange} />
             </div>
             <div>
-                <button onClick={onSendClicked}>
+                <button value={{subject, message}} onClick={onSendClicked}>
                     Send
                 </button>
             </div>
