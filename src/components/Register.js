@@ -17,14 +17,18 @@ class Register extends Component {
     }
 
     onFormSubmit(event) {
-        const isSucc = registerUser(this.state).then((data) => {
-            if (!data) {
-                return true;
-            }
+        console.log('register state: ', this.state);
+        const data = registerUser(this.state).then((response) => {
+            console.log('response: ', response);
+            return response;
+        }).catch(err => {
+            console.log('fail error: ', err);
+            alert('registration failed: ', err);
         });
-        if (!isSucc) {
-            alert('register failed');
-        }
+        // if (data && data.statusCode !== 200) {
+        //     console.log('failed data: ', data);
+        //     alert('register failed', data);
+        // }
         event.preventDefault();
     }
 
