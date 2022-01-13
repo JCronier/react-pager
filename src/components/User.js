@@ -1,13 +1,9 @@
 import {FaTimes} from 'react-icons/fa'
-const User = ({user,onDelete}) => {
-    const onEmailClicked = (event) => {
-
-    }
-
-    return (
+const User = ({user, onDelete, onUserClicked}) => {
+  return (
         <div>
             <h4>
-                <button value={user.email} onClick={onEmailClicked}>
+                <button value={user.email} onClick={()=>onUserClicked(user)}>
                     {user.name}
                 </button>
                 <FaTimes style={{color:'red', cursor:'crosshair'}} onClick={()=>onDelete(user)}/>

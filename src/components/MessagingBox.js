@@ -2,14 +2,10 @@ import { useState } from 'react';
 
 import { sendEmail } from "../api/index";
 
-const MessagingBox = ({userClicked}) => {
+const MessagingBox = ({userClicked, onExitClicked}) => {
     const recipientEmail = userClicked.email;
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
-
-    const onExitClicked = (event) => {
-        unmountComponentAtNode(document.getElementById('messagingBox'));
-    }
 
     const onSendClicked = (event) => {
         const messageBeingSent = event.target.value.message;
@@ -39,7 +35,7 @@ const MessagingBox = ({userClicked}) => {
                     <header className='header'>
                         <h5>{userClicked.name}</h5>
                     </header>
-                    <button style={{marginLeft: 'auto'}} onClick={onExitClicked}>
+                    <button style={{marginLeft: 'auto'}} onClick={() => {onExitClicked()}}>
                         X
                     </button>
                 </span>
