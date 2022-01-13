@@ -19,7 +19,7 @@ const Loggedin = ({currLogin,users,setUsers}) =>
     return (
         <div>
             <h3>Hi {currLogin.name}</h3>
-            <Users users={users} onDelete={deleteUser}/>
+            <Users users={users} currLogin ={currLogin} onDelete={deleteUser}/>
             <AddUserForm users={users} onAdd={addUser}/>
         </div>
     )

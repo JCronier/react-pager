@@ -19,11 +19,8 @@ function App() {
 
   //fetch logins
   useEffect(()=>{
-    const test = ()=>{
-      getUsers().then((response)=>setLogins(response.data.users)
-      ).catch((error)=>console.error(`Error: ${error}`))
-    }  
-    test() 
+    getUsers().then((response)=>setLogins(response.data.users)
+    ).catch((error)=>console.error(`Error: ${error}`))  
     },[])
     
    //check if login is registered  
