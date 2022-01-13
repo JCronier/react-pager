@@ -37,7 +37,7 @@ export const getUsers = () => axios.get(api_url + '/users', { headers });
 export const getUser = (id) => axios.get(`${api_url}${usersEndpoint}/${id}`, { headers });
 
 // create user
-export const createUser = (data) => axios.post(api_url + usersEndpoint, { headers, data});
+export const createUser = (userData) => axios.post(api_url + registerEndPoint, userData, { headers });
 
 // delete a user
 export const deleteUser = (id) => axios.delete(`${api_url}${usersEndpoint}/${id}`, { headers });
