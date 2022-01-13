@@ -1,12 +1,26 @@
+import {useState,useEffect} from 'react'
+
 import './App.css'
 import Header from './components/Header'
 import Login from './components/Login'
 import Loggedin from './components/Loggedin'
-import {useState,useEffect} from 'react'
+import Register from './components/Register'
 import { getUsers } from './api'
+
 function App() {
-  //all logins state
-  const [logins,setLogins]=useState([])
+  //logins state
+  const [logins,setLogins]=useState([
+    {
+      id:1,
+      email:'jcronier777@gmail.com',
+      users:['johnny@netflare.dev','jordan@netflare.dev']
+    },
+    {
+      id:2,
+      email:'test@netflare.dev',
+      users:['test2@netflare.dev','test3@netflare.dev']
+    }
+  ])
 
   //all users state
   const [users,setUsers]=useState([])
@@ -57,6 +71,7 @@ function App() {
         {users.map(user => <li>{user.name}</li>)}
       </ul> */}
       <Header title='Netflare'/>
+      <Register />
       {showLogin ? <Login  verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={users} setUsers={setUsers}/>}
     </div>
   );
