@@ -12,18 +12,13 @@ const Loggedin = ({currLogin,users,setUsers}) =>
 
     //add user
     const addUser = (user)=>{
-        // const res = await fetch('http://localhost:5005/users',
-        // { method: 'POST', 
-        // headers: {'Content-type': 'application/json'},
-        // body: JSON.stringify(user)
-        // })
         createUser(user).then((response)=>setUsers([...users,user])
         ).catch((error)=>console.error(`Error: ${error}`))
     }
 
     return (
         <div>
-            <h3>Hi {currLogin.email}</h3>
+            <h3>Hi {currLogin.name}</h3>
             <Users users={users} onDelete={deleteUser}/>
             <AddUserForm users={users} onAdd={addUser}/>
         </div>

@@ -30,7 +30,8 @@ export const getUser = (id) => axios.get(`${api_url}${usersEndpoint}/${id}`, { h
 export const createUser = (userData) => axios.post(api_url + registerEndPoint, userData, { headers });
 
 // delete a user
-export const deleteUser = (id) => axios.delete(`${api_url}${usersEndpoint}/${id}`, { headers });
+// export const deleteUser = (id) => axios.delete(`${api_url}${usersEndpoint}/${id}`, { headers });
+export const deleteUser = (email) => axios.delete(`${api_url}${usersEndpoint}/user?email=${email}`, { headers });
 
 // send an email
 export const sendEmail = (data) => axios.post(api_url + emailEndPoint, { headers, data })
