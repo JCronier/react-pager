@@ -3,7 +3,7 @@ import { useState } from "react"
 const AddUserForm = ({onAdd}) => {
     //add user input state
     const[email,setEmail]=useState('')
-
+    const[name,setName]=useState('')
     //enter button event
     const onSubmit=(e)=>{
         e.preventDefault()
@@ -11,17 +11,19 @@ const AddUserForm = ({onAdd}) => {
             alert('Provide a user')
             return
         }
-        onAdd({email})
+        onAdd({email,name})
         setEmail('')
+        setName('')
     }
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <label>Add User</label>
-                <input type='text' value={email} onChange={(e)=>setEmail(e.target.value)} />
-                <input type ='submit' value ='Add'/>
-            </form>
-        </div>
+        <form onSubmit={onSubmit}>
+            <div><label>Add User</label></div>
+            <label>Name</label>
+            <input type='text' value={name} onChange={(e)=>setName(e.target.value)} />
+            <label>Email</label>
+            <input type='text' value={email} onChange={(e)=>setEmail(e.target.value)} />
+            <input type ='submit' value ='Add'/>
+        </form>
     )
 }
 

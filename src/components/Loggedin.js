@@ -1,22 +1,24 @@
 import AddUserForm from './AddUserForm'
 import Users from './Users'
+import { deleteUser as removeUser,createUser } from '../api'
 const Loggedin = ({currLogin,users,setUsers}) => 
 {
     //delete user
-    const deleteUser= async(user)=>{
-        await fetch(`http://localhost:5005/users/${user.id}`,{method: 'DELETE'})
-        setUsers(users.filter((u)=>u!==user))
+    const deleteUser= (user)=>{
+        removeUser(user.email).then((response)=>setUsers(users.filter((u)=>u!==user))
+        ).catch((error)=>console.error(`Error: ${error}`))
+
     }
 
     //add user
-    const addUser = async(user)=>{
-        const res = await fetch('http://localhost:5005/users',
-        { method: 'POST', 
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(user)
-        })
-        const data = await res.json()
-        setUsers([...users,user])
+    const addUser = (user)=>{
+        // const res = await fetch('http://localhost:5005/users',
+        // { method: 'POST', 
+        // headers: {'Content-type': 'application/json'},
+        // body: JSON.stringify(user)
+        // })
+        createUser(user).then((response)=>setUsers([...users,user])
+        ).catch((error)=>console.error(`Error: ${error}`))
     }
 
     return (
