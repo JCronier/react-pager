@@ -27,6 +27,22 @@ function App() {
   //login page state
   const [showLogin,setShowLogin]=useState(true)
 
+  useEffect(()=>{
+    const getLogins =async()=>{
+      const loginsFromServer= await fetchLogins()
+      setLogins(loginsFromServer)
+      
+    }
+      getLogins()
+    },[])
+
+    //fetch logins
+    const fetchLogins =async()=>{
+      const res =await fetch('http://localhost:5005/logins')
+      const data = await res.json()
+      return data
+    }
+
    //check if user is registered  
   const verifyUser = (user)=>{
     let res =logins.find((login)=>login.email===user)
