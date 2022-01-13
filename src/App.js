@@ -4,25 +4,30 @@ import Login from './components/Login'
 import Loggedin from './components/Loggedin'
 import {useState,useEffect} from 'react'
 function App() {
-  //logins state
-  const [logins,setLogins]=useState([
-    {
-      id:1,
-      email:'myron_yung@netflare.dev',
-      users:['johnny@netflare.dev','jordan@netflare.dev']
-    },
-    {
-      id:2,
-      email:'test@netflare.dev',
-      users:['test2@netflare.dev','test3@netflare.dev']
-    }
-  ])
+  //all logins state
+  const [logins,setLogins]=useState([])
 
   //current login
   const [currLogin,setCurrLogin]=useState({})
   
   //login page state
   const [showLogin,setShowLogin]=useState(true)
+
+  useEffect(()=>{
+    const getLogins =async()=>{
+      const loginsFromServer= await fetchLogins()
+      setLogins(loginsFromServer)
+      
+    }
+      getLogins()
+    },[])
+
+    //fetch logins
+    const fetchLogins =async()=>{
+      const res =await fetch('http://localhost:5005/logins')
+      const data = await res.json()
+      return data
+    }
 
    //check if user is registered  
   const verifyUser = (user)=>{
@@ -37,9 +42,9 @@ function App() {
 
   return (
     <div className='container'>
-      <ul>
-        {currLogin.users.map(user => <li>{user.name}</li>)}
-      </ul>
+      {/* <ul>
+        {users.map(user => <li>{user.name}</li>)}
+      </ul> */}
       <Header title='Netflare'/>
       {showLogin ? <Login verifyUser={verifyUser}/>:<Loggedin currLogin={currLogin} setCurrLogin={setCurrLogin} logins={logins} setLogins={setLogins}/>}
     </div>
