@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.user{
+  background: #f4f4f4;
+  margin: 5px;
+  padding: 20px 20px;
+  cursor: pointer;
+}
+
+.addForm{
+  padding: 20px 20px;
+  background: #cfcfcf;
+}
+
+.title{
+  font-weight: 700;
+}

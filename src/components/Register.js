@@ -48,7 +48,7 @@ class Register extends Component {
                         </label>
                     </div>
 
-                    <label for="name">
+                    <label htmlFor="name">
                         Name: 
                     </label>
                     <input
@@ -60,7 +60,7 @@ class Register extends Component {
                         required
                     />
 
-                    <label for="email">
+                    <label htmlFor="email">
                         Email: 
                     </label>
                     <input 

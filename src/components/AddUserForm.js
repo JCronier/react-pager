@@ -16,8 +16,8 @@ const AddUserForm = ({onAdd}) => {
         setName('')
     }
     return (
-        <form onSubmit={onSubmit}>
-            <div><label>Add User</label></div>
+        <form className='addForm' onSubmit={onSubmit}>
+            <div><label className='title'>Add User</label></div>
             <label>Name</label>
             <input type='text' value={name} onChange={(e)=>setName(e.target.value)} />
             <label>Email</label>
