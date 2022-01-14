@@ -3,3 +3,13 @@
     bottom: 0;
     right: 0;
 }
+
+.closeIcon {
+    position: absolute;
+    right: 0;
+}
+
+.sendButton {
+    position: absolute;
+    right: 0;
+}

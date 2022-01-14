@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 import { sendEmail } from "../api/index";
 
@@ -15,9 +16,8 @@ const MessagingBox = ({userClicked, onExitClicked}) => {
     const [message, setMessage] = useState('');
 
     const onSendClicked = (event) => {
-        const messageBeingSent = event.target.value.message;
-        console.log('message being sent: ', messageBeingSent);
-        sendEmail(messageBeingSent).then((response) => {
+        console.log('message being sent: ', message);
+        sendEmail(message).then((response) => {
             console.log('response: ', response);
             console.log('recipientEmail: ', recipientEmail);
             console.log('message sent: ', message);
@@ -41,14 +41,15 @@ const MessagingBox = ({userClicked, onExitClicked}) => {
                 <AppBar position="static">
                     <Toolbar>
                         <h3>{userClicked.name}</h3>
-                        <CloseIcon onClick={() => {onExitClicked()}}/>
+                        <CloseIcon className='closeIcon' onClick={() => {onExitClicked()}}/>
                     </Toolbar>
                 </AppBar>
             </Box>
+
             <Box>
                 <Box>
                     <header>
-                    To: {recipientEmail}
+                        To: {recipientEmail}
                     </header>
                 </Box>
                 <Box>
@@ -61,19 +62,22 @@ const MessagingBox = ({userClicked, onExitClicked}) => {
                 </Box>
                 
                 <Box>
-                    <input 
-                    type="text"
-                    value={message}
-                    placeholder="Message"
-                    onChange={onMessageInputChange}
+                    <TextField
+                        multiline
+                        type="text"
+                        value={message}
+                        placeholder='Message'
+                        onChange={onMessageInputChange}
                     />
+
                 </Box>
             </Box>
-            <Box>
-                <Button variant='contained' value={{subject, message}} onClick={onSendClicked}>
+            
+            <Toolbar>
+                <Button className='sendButton' variant='contained' onClick={onSendClicked}>
                     Send
                 </Button>
-            </Box>
+            </Toolbar>
         </div>
     );
 }
