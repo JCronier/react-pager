@@ -1,86 +1,48 @@
-import React, { Component } from "react";
-
+import {Button, TextField, Grid } from "@mui/material"
 import { registerUser } from '../api/index';
-
+import { useState } from "react"
 // help from https://youtu.be/AWLgf_xfd_w channel edutechional
-class Register extends Component {
-    constructor(props) {
-        super(props);
+const Register =({setLogins})=> {
+    //register user input state
+    const[email,setEmail]=useState('')
+    const[name,setName]=useState('')
 
-        this.state = {
-            name: '',
-            email: ''
-        };
-
-        this.onFormSubmit = this.onFormSubmit.bind(this);
-        this.onInputChange = this.onInputChange.bind(this);
+    //enter button event
+    const onSubmit=(e)=>{
+        e.preventDefault()
+        if(!name){
+            alert('Provide a name')
+            return
+        }
+        if(!email){
+            alert('Provide a username')
+            return
+        }
+        registerUser({email,name}).then((response) => setLogins(prev => [...prev, {email,name}])
+        ).catch((error)=>console.error(`Error: ${error}`))
+        setEmail('')
+        setName('')
     }
 
-    onFormSubmit(event) {
-        console.log('register state: ', this.state);
-        const data = registerUser(this.state).then((response) => {
-            console.log('response: ', response);
-            const { email } = response.data;
-            this.props.setLogins(prev => [...prev, {email, name:this.state.name}])
-            return response;
-        }).catch(err => {
-            console.log('fail error: ', err);
-            alert('registration failed: ', err);
-        });
-        // if (data && data.statusCode !== 200) {
-        //     console.log('failed data: ', data);
-        //     alert('register failed', data);
-        // }
-        event.preventDefault();
-    }
+    return (
+        <form onSubmit={onSubmit}>
+            <Grid container>
+                <Grid item>
+                    <TextField type='text' label="Name"  size="small"
+                        value={name} onChange={(e)=>setName(e.target.value)} />
+                </Grid>
+                <Grid item>
+                    <TextField type='text' label="Email"  size="small"
+                        value={email} onChange={(e)=>setEmail(e.target.value)} />
+                </Grid>
+                <Grid item alignItems="stretch" style={{ display: "flex" }}>
+                    <Button variant="contained" type ='submit'>Login</Button>
+                </Grid>
+            </Grid>
 
-    onInputChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
-
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.onFormSubmit}>
-                    <div>
-                        <label>
-                            Register
-                        </label>
-                    </div>
-
-                    <label htmlFor="name">
-                        Name: 
-                    </label>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="john"
-                        value={this.state.name}
-                        onChange={this.onInputChange}
-                        required
-                    />
-
-                    <label htmlFor="email">
-                        Email: 
-                    </label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        placeholder="john@gmail.com" 
-                        value={this.state.email} 
-                        onChange={this.onInputChange}
-                        required
-                    />
-
-                    <button type="submit">
-                        Register
-                    </button>
-                </form>
-            </div>
-        );
-    }
+        </form>
+    )
+    
 }
 
 export default Register;
