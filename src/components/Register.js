@@ -18,7 +18,7 @@ class Register extends Component {
 
     onFormSubmit(event) {
         console.log('register state: ', this.state);
-        const data = registerUser(this.state).then((response) => {
+        registerUser(this.state).then((response) => {
             console.log('response: ', response);
             const { email } = response.data;
             this.props.setLogins(prev => [...prev, {email, name:this.state.name}])
@@ -27,10 +27,7 @@ class Register extends Component {
             console.log('fail error: ', err);
             alert('registration failed: ', err);
         });
-        // if (data && data.statusCode !== 200) {
-        //     console.log('failed data: ', data);
-        //     alert('register failed', data);
-        // }
+        alert('Registrating complete!');
         event.preventDefault();
     }
 
