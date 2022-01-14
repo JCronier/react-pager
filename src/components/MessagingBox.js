@@ -1,6 +1,13 @@
 import { useState } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import CloseIcon from '@mui/icons-material/Close';
+import Button from '@mui/material/Button';
 
 import { sendEmail } from "../api/index";
+
+import './MessagingBoxStyle.css';
 
 const MessagingBox = ({userClicked, onExitClicked}) => {
     const recipientEmail = userClicked.email;
@@ -29,29 +36,27 @@ const MessagingBox = ({userClicked, onExitClicked}) => {
     }
 
     return (
-        <div id="messagingBox">
-            <div>
-                <span style={{display: 'flex'}}>
-                    <header className='header'>
+        <div className='messagingFrame' id="messagingBox">
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar>
                         <h5>{userClicked.name}</h5>
-                    </header>
-                    <button style={{marginLeft: 'auto'}} onClick={() => {onExitClicked()}}>
-                        X
-                    </button>
-                </span>
-            </div>
-            <div>
+                        <CloseIcon onClick={() => {onExitClicked()}}/>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+            <Box>
                 <label>
                     {recipientEmail}
                 </label>
                 <input type="text" value={subject} placeholder="Subject" onChange={onSubjectInputChange} />
                 <input type="text" value={message} placeholder="Message" onChange={onMessageInputChange} />
-            </div>
-            <div>
-                <button value={{subject, message}} onClick={onSendClicked}>
+            </Box>
+            <Box>
+                <Button variant='contained' value={{subject, message}} onClick={onSendClicked}>
                     Send
-                </button>
-            </div>
+                </Button>
+            </Box>
         </div>
     );
 }
