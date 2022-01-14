@@ -3,7 +3,6 @@ import './App.css'
 import Header from './components/Header'
 import Login from './components/Login'
 import Loggedin from './components/Loggedin'
-import Register from './components/Register'
 import { getUsers } from './api'
 import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
 
