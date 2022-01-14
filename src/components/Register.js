@@ -1,7 +1,6 @@
 import {Button, TextField, Grid } from "@mui/material"
 import { registerUser } from '../api/index';
 import { useState } from "react"
-// help from https://youtu.be/AWLgf_xfd_w channel edutechional
 const Register =({setLogins})=> {
     //register user input state
     const[email,setEmail]=useState('')
@@ -36,7 +35,7 @@ const Register =({setLogins})=> {
                         value={email} onChange={(e)=>setEmail(e.target.value)} />
                 </Grid>
                 <Grid item alignItems="stretch" style={{ display: "flex" }}>
-                    <Button variant="contained" type ='submit'>Login</Button>
+                    <Button variant="contained" type ='submit'>Register</Button>
                 </Grid>
             </Grid>
 

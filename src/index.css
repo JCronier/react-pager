@@ -12,18 +12,26 @@ code {
     monospace;
 }
 
-.user{
-  background: #f4f4f4;
-  margin: 5px;
-  padding: 20px 20px;
-  cursor: pointer;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 70px;
+}
+.nav-area{
+list-style:none;
+}
+.nav-area li{
+  display: inline-block;
+  padding: 0 15px;
+  text-transform: uppercase;
 }
 
-.addForm{
-  padding: 20px 20px;
-  background: #cfcfcf;
-}
-
-.title{
-  font-weight: 700;
+.nav-area a{
+  transition: .3s;
+  color:black;
 }
