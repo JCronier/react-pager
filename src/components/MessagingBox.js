@@ -40,17 +40,34 @@ const MessagingBox = ({userClicked, onExitClicked}) => {
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static">
                     <Toolbar>
-                        <h5>{userClicked.name}</h5>
+                        <h3>{userClicked.name}</h3>
                         <CloseIcon onClick={() => {onExitClicked()}}/>
                     </Toolbar>
                 </AppBar>
             </Box>
             <Box>
-                <label>
-                    {recipientEmail}
-                </label>
-                <input type="text" value={subject} placeholder="Subject" onChange={onSubjectInputChange} />
-                <input type="text" value={message} placeholder="Message" onChange={onMessageInputChange} />
+                <Box>
+                    <header>
+                    To: {recipientEmail}
+                    </header>
+                </Box>
+                <Box>
+                   <input 
+                    type="text"
+                    value={subject}
+                    placeholder="Subject"
+                    onChange={onSubjectInputChange}
+                    /> 
+                </Box>
+                
+                <Box>
+                    <input 
+                    type="text"
+                    value={message}
+                    placeholder="Message"
+                    onChange={onMessageInputChange}
+                    />
+                </Box>
             </Box>
             <Box>
                 <Button variant='contained' value={{subject, message}} onClick={onSendClicked}>
