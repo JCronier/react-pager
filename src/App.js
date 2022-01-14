@@ -3,8 +3,11 @@ import './App.css'
 import Header from './components/Header'
 import Login from './components/Login'
 import Loggedin from './components/Loggedin'
+import Register from './components/Register'
+import Home from './components/Home'
 import { getUsers } from './api'
 import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
+import {Grid, Link,Typography} from "@mui/material"
 
 function App() {
   //logins state
@@ -32,21 +35,18 @@ function App() {
       alert('Not a registered user')
     }
   }
-
   return (
     <Router>
-      <div>
+      <div style={{transform: `translate(40%,20%)`}}>
         <Header title='Netflare'/>
-        <nav>
-          <ul className ="nav-area">
-            <li><a href="/">login</a></li>
-            <li><a href="/register">register</a></li>
-          </ul>
-        </nav> 
-
+        <Grid container spacing={1} style={{marginTop: 10, marginBottom: 25}}>
+          <Grid item sm={1} ><Link href="/login" style={{ textDecoration: 'none'}}>login</Link></Grid>
+          <Grid item sm={1} ><Link href="/register" style={{ textDecoration: 'none' }}>register</Link></Grid>
+        </Grid>
         <Routes>
+          <Route path='/' element={<Home />}/>
           <Route path="/register" element={<Register />}/>
-          <Route path="/" element={showLogin ? <Login verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins}/>}/>
+          <Route path="/login" element={showLogin ? <Login verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins}/>}/>
         </Routes>
       </div>
     </Router>
