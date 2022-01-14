@@ -1,5 +1,7 @@
 import { useState } from "react"
-const Login = ({verifyLogin}) => {
+import { loginUser } from "../api"
+import Register from "./Register"
+const Login = ({verifyLogin, setLogins}) => {
     //login input state
     const [text,setText]=useState('')
 
@@ -10,15 +12,21 @@ const Login = ({verifyLogin}) => {
             alert('Provide a username')
             return
         }
-        verifyLogin(text)
-        setText('')
+        loginUser({ email: text })
+            .then((res) => verifyLogin(text))
+            .catch(() => alert("Yall done ****** up"));
+
+        setText('');
     }
     return (
+        <>
         <form className='container' onSubmit={onSubmit}>
             <h3>Login</h3>
             <input type='text' value={text} onChange={(e)=>setText(e.target.value)} />
             <input type ='submit' value ='Enter'/>
         </form>
+        <Register setLogins={setLogins} />
+        </>
     )
 }
  
