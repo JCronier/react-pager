@@ -40,8 +40,7 @@ function App() {
         {users.map(user => <li>{user.name}</li>)}
       </ul> */}
       <Header title='Netflare'/>
-      <Register />
-      {showLogin ? <Login  verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins}/>}
+      {showLogin ? <Login setLogins={setLogins}  verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins}/>}
     </div>
   );
 }
