@@ -1,5 +1,6 @@
 import {useState,useEffect} from 'react'
-
+// import ReactDOM from 'react-dom';
+// import Button from '@mui/material/Button';
 import './App.css'
 import Header from './components/Header'
 import Login from './components/Login'
@@ -36,12 +37,10 @@ function App() {
 
   return (
     <div >
-      {/* <ul>
-        {users.map(user => <li>{user.name}</li>)}
-      </ul> */}
       <Header title='Netflare'/>
       {/* <Register /> */}
-      {showLogin ? <Login setLogins={setLogins}  verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins}/>}
+      {showLogin ? <Login verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins}/>}
+      <Register setLogins={setLogins} />
     </div>
   );
 }
