@@ -1,10 +1,10 @@
 import {useState,useEffect} from 'react'
-
 import './App.css'
 import Header from './components/Header'
 import Login from './components/Login'
 import Loggedin from './components/Loggedin'
 import { getUsers } from './api'
+import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
 
 function App() {
   //logins state
@@ -34,15 +34,25 @@ function App() {
   }
 
   return (
-    <div >
-      {/* <ul>
-        {users.map(user => <li>{user.name}</li>)}
-      </ul> */}
-      <Header title='Netflare'/>
-      {showLogin ? <Login setLogins={setLogins}  verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins}/>}
-    </div>
+    <Router>
+      <div>
+        <Header title='Netflare'/>
+        <nav>
+          <ul className ="nav-area">
+            <li><a href="/">login</a></li>
+            <li><a href="/register">register</a></li>
+          </ul>
+        </nav> 
+
+        <Routes>
+          <Route path="/register" element={<Register />}/>
+          <Route path="/" element={showLogin ? <Login verifyLogin={verifyLogin}/>:<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins}/>}/>
+        </Routes>
+      </div>
+    </Router>
   );
 }
+
 
 export default App;
 

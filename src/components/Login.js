@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { loginUser } from "../api"
-import Register from "./Register"
-const Login = ({verifyLogin, setLogins}) => {
+import {Button, TextField, Grid } from "@mui/material"
+const Login = ({verifyLogin}) => {
     //login input state
     const [text,setText]=useState('')
 
@@ -12,21 +12,22 @@ const Login = ({verifyLogin, setLogins}) => {
             alert('Provide a username')
             return
         }
-        loginUser({ email: text })
-            .then((res) => verifyLogin(text))
-            .catch(() => alert("Yall done ****** up"));
-
+        loginUser({ email: text }).then((response) => verifyLogin(text)
+        ).catch((error) => console.error(`Error: ${error}`));
         setText('');
     }
     return (
-        <>
         <form className='container' onSubmit={onSubmit}>
-            <h3>Login</h3>
-            <input type='text' value={text} onChange={(e)=>setText(e.target.value)} />
-            <input type ='submit' value ='Enter'/>
+            <Grid container>
+                <Grid item>
+                    <TextField type='text' label="Username"  size="small"
+                    value={text} onChange={(e)=>setText(e.target.value)} />
+                </Grid>
+                <Grid item alignItems="stretch" style={{ display: "flex" }}>
+                    <Button variant="contained" type ='submit'>Login</Button>
+                </Grid>
+            </Grid>   
         </form>
-        <Register setLogins={setLogins} />
-        </>
     )
 }
  

@@ -20,7 +20,7 @@ const Loggedin = ({currLogin,users,setUsers}) =>
 
     //add user
     const addUser = (user)=>{
-        createUser(user).then((response)=>setUsers([...users,user])
+        createUser(user).then((response)=>setUsers(prev=>[...prev,user])
         ).catch((error)=>console.error(`Error: ${error}`))
     }
 
