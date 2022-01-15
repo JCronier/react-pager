@@ -34,4 +34,4 @@ export const createUser = (userData) => axios.post(api_url + registerEndPoint, u
 export const deleteUser = (email) => axios.delete(`${api_url}${usersEndpoint}/user?email=${email}`, { headers });
 
 // send an email
-export const sendEmail = (data) => axios.post(api_url + emailEndPoint, { headers, data })
+export const sendEmail = (data) => axios.post(api_url + emailEndPoint, data, { headers });
