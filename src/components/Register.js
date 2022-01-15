@@ -25,12 +25,12 @@ const Register =({setLogins})=> {
 
     return (
         <form onSubmit={onSubmit}>
-            <Grid container>
-                <Grid item>
+            <Grid container rowSpacing={{xs: 2}}>
+                <Grid item xs={12}>
                     <TextField type='text' label="Name"  size="small"
                         value={name} onChange={(e)=>setName(e.target.value)} />
                 </Grid>
-                <Grid item>
+                <Grid item xs={12}>
                     <TextField type='text' label="Email"  size="small"
                         value={email} onChange={(e)=>setEmail(e.target.value)} />
                 </Grid>

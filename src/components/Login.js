@@ -18,8 +18,8 @@ const Login = ({verifyLogin}) => {
     }
     return (
         <form className='container' onSubmit={onSubmit}>
-            <Grid container>
-                <Grid item>
+            <Grid container rowSpacing={{xs: 2}}>
+                <Grid item md={12} >
                     <TextField type='text' label="Username"  size="small"
                     value={text} onChange={(e)=>setText(e.target.value)} />
                 </Grid>
