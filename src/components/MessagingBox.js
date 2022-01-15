@@ -16,15 +16,22 @@ const MessagingBox = ({userClicked, onExitClicked}) => {
     const [message, setMessage] = useState('');
 
     const onSendClicked = (event) => {
+        event.preventDefault();
         console.log('message being sent: ', message);
-        sendEmail(message).then((response) => {
+        const messageData = {
+            email: recipientEmail,
+            subject: subject,
+            message: message
+        }
+        sendEmail(messageData).then((response) => {
             console.log('response: ', response);
             console.log('recipientEmail: ', recipientEmail);
             console.log('message sent: ', message);
+            alert('message sent');
         }).catch(err => {
             console.log('email send error: ', err);
+            alert('error message not sent');
         });
-        alert('message sent');
     }
 
     const onSubjectInputChange = (event) => {
