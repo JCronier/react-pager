@@ -13,13 +13,15 @@ const Login = ({verifyLogin}) => {
             return
         }
         loginUser({ email: text }).then((response) => verifyLogin(text)
-        ).catch((error) => console.error(`Error: ${error}`));
+        ).catch((error) => {console.error(`Error: ${error}`) 
+            alert('Not a registered user')
+        })
         setText('');
     }
     return (
         <form className='container' onSubmit={onSubmit}>
             <Grid container rowSpacing={{xs: 2}}>
-                <Grid item md={12} >
+                <Grid item xs={12} >
                     <TextField type='text' label="Username"  size="small"
                     value={text} onChange={(e)=>setText(e.target.value)} />
                 </Grid>
