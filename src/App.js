@@ -7,7 +7,7 @@ import Register from './components/Register'
 import Home from './components/Home'
 import { getUsers } from './api'
 import {BrowserRouter as Router,Route,Routes,useNavigate} from "react-router-dom";
-import {Grid, Link,Typography} from "@mui/material"
+import {Button, Grid, Link,Typography} from "@mui/material"
 
 function App() {
   //logins state
@@ -17,7 +17,9 @@ function App() {
   const [currLogin,setCurrLogin]=useState({})
   
   //login page state
-  const [showLogin,setShowLogin]=useState(true)
+  const [navBar,setNavBar]=useState('login')
+
+  const [showAddUser,setShowAddUser]=useState(false)
 
   //fetch logins
   useEffect(()=>{
@@ -30,29 +32,28 @@ function App() {
   const verifyLogin = (login)=>{
     let res =logins.find((l)=>l.email===login)
     if(res){
-      setShowLogin(false)
+      setNavBar('loggedin')
       setCurrLogin(res)
       navigate('/loggedin')
-    }else{
-      alert('Not a registered user')
     }
   }
   return (
-    <div style={{transform: `translate(40%,20%)`}}>
-      <Header title='Netflare'/>
-      {showLogin ? <Grid container spacing={1} style={{marginTop: 10, marginBottom: 25}}>
-        <Grid item sm={1} ><Link href="/login" style={{ textDecoration: 'none'}}>login</Link></Grid>
-        <Grid item sm={1} ><Link href="/register" style={{ textDecoration: 'none' }}>register</Link></Grid>
+    <div>
+      <Typography variant='h2'>Netflare</Typography>
+      {navBar==='login' ? <Grid container spacing={1} style={{marginTop: 10, marginBottom: 25}}>
+        <Grid item ><Button href="/login" style={{ textDecoration: 'none'}}>login</Button></Grid>
+        <Grid item ><Button href="/register" style={{ textDecoration: 'none' }}>register</Button></Grid>
       </Grid>:
       <Grid container spacing={1} style={{marginTop: 10, marginBottom: 25}}>
-        <Grid item sm={1} ><Link href="/login" style={{ textDecoration: 'none'}}>LogOut</Link></Grid>
+        <Grid item ><Button  onClick={()=>setShowAddUser(!showAddUser)} style={{ textDecoration: 'none'}}>Add User</Button></Grid>
+        <Grid item ><Button href="/login" style={{ textDecoration: 'none'}}>LogOut</Button></Grid>
       </Grid>
       }
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/login" element={<Login verifyLogin={verifyLogin}/>}/>
-        <Route path="/loggedin" element={<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins}/>}/>
+        <Route path="/loggedin" element={<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins} showAddUser={showAddUser}/>}/>
       </Routes>
     </div>
   );

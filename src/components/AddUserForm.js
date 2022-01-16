@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import {Grid, TextField,Button} from "@mui/material"
 const AddUserForm = ({onAdd}) => {
     //add user input state
     const[email,setEmail]=useState('')
@@ -16,14 +16,21 @@ const AddUserForm = ({onAdd}) => {
         setName('')
     }
     return (
-        <form className='addForm' onSubmit={onSubmit}>
-            <div><label className='title'>Add User</label></div>
-            <label>Name</label>
-            <input type='text' value={name} onChange={(e)=>setName(e.target.value)} />
-            <label>Email</label>
-            <input type='text' value={email} onChange={(e)=>setEmail(e.target.value)} />
-            <input type ='submit' value ='Add'/>
-        </form>
+    <form className='container' onSubmit={onSubmit}>
+        <Grid container columnSpacing={{xs: 1}}>
+            <Grid item xs={1}>
+                <TextField type='text' label="Name"  size="small"
+                    value={name} onChange={(e)=>setName(e.target.value)} />
+            </Grid>
+            <Grid item xs={2}>
+                <TextField type='text' label="Email"  size="small"
+                    value={email} onChange={(e)=>setEmail(e.target.value)} />
+            </Grid>
+            <Grid item alignItems="stretch" style={{ display: "flex" }}>
+                <Button variant="contained" type ='submit'>Add</Button>
+            </Grid>
+        </Grid>
+    </form>
     )
 }
 

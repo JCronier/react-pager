@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { unmountComponentAtNode } from "react-dom";
-
 import AddUserForm from './AddUserForm'
 import MessagingBox from "./MessagingBox";
 import Users from './Users'
 import { deleteUser as removeUser,createUser } from '../api'
-
-const Loggedin = ({currLogin,users,setUsers}) => 
+import { Grid, Typography } from "@mui/material"
+const Loggedin = ({currLogin,users,setUsers,showAddUser}) => 
 {
     const [isMessagingBoxOpen, setIsMessagingBoxOpen] = useState(false);
     const [User, setUser] = useState(null);
@@ -40,12 +39,18 @@ const Loggedin = ({currLogin,users,setUsers}) =>
 
     return (
         <div>
-            <h3>Hi {currLogin.name}</h3>
-            <Users users={users} currLogin ={currLogin} onDelete={deleteUser} onUserClicked={onUserClicked}/>
-            <AddUserForm users={users} onAdd={addUser}/>
-            {
-                isMessagingBoxOpen ? <MessagingBox userClicked={User} onExitClicked={onExitClicked}/> : <div></div>
-            }
+            <Typography variant='h4'>Hi {currLogin.name}</Typography>
+            <Grid container>
+                <Grid item md={12} style={{marginTop: 10, marginBottom: 10}}>
+                    {showAddUser &&<AddUserForm users={users} onAdd={addUser}/>}
+                </Grid>
+                <Grid item md={12}>
+                   <Users users={users} currLogin ={currLogin} onDelete={deleteUser} onUserClicked={onUserClicked}/> 
+                </Grid>
+                
+                { isMessagingBoxOpen ? <MessagingBox userClicked={User} onExitClicked={onExitClicked}/> : <div></div>}
+            </Grid>
+            
         </div>
     )
 }
