@@ -13,6 +13,7 @@ const Login = ({verifyLogin,setAlertUsername,setAlertUnvalid}) => {
         }
         loginUser({ email: text }).then((response) => {
             verifyLogin(text)
+
         }).catch((error) => {console.error(`Error: ${error}`) 
             setAlertUnvalid(true)
         })
