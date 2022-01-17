@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { loginUser } from "../api"
-import {Button, TextField, Grid, Alert } from "@mui/material"
+import {Button, TextField, Box, Alert } from "@mui/material"
 const Login = ({verifyLogin,setAlertUsername,setAlertUnvalid}) => {
     //login input state
     const [text,setText]=useState('')
@@ -21,15 +21,15 @@ const Login = ({verifyLogin,setAlertUsername,setAlertUnvalid}) => {
     }
     return (
         <form className='container' onSubmit={onSubmit}>
-            <Grid container rowSpacing={{xs: 2}}>
-                <Grid item xs={12} >
+            <Box display='flex' flexDirection='column' marginLeft={2}>
+                <Box marginBottom={2}>
                     <TextField type='text' label="Email"  size="small"
                     value={text} onChange={(e)=>setText(e.target.value)} />
-                </Grid>
-                <Grid item alignItems="stretch" style={{ display: "flex" }}>
+                </Box>
+                <Box >
                     <Button variant="contained" type ='submit'>Login</Button>
-                </Grid>
-            </Grid>   
+                </Box>
+            </Box>   
         </form>
     )
 }

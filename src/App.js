@@ -6,7 +6,8 @@ import Register from './components/Register'
 import Home from './components/Home'
 import { getUsers } from './api'
 import {Route,Routes,useNavigate,useLocation} from "react-router-dom";
-import {Button, Grid, Typography,Alert} from "@mui/material"
+import {Button, Typography,Alert} from "@mui/material"
+import { Box } from '@mui/system'
 
 function App() {
   //logins state
@@ -51,29 +52,26 @@ function App() {
   const location =useLocation()
     return (
     <div >
-      <Grid container direction='row' alignItems='end' >
-        <Grid item xs={10}>
-          <Typography variant='h2'>Netflare</Typography>
-        </Grid>
-        <Grid item >
-          {currLogin.name==='undefined'&&<Typography variant='h4'>Hi {currLogin.name}</Typography>}
-        </Grid>
-      </Grid>
-      
+      <Box display='flex' flexDirection='row' alignItems='flex-end' >
+        <Box marginLeft={2} flexGrow='1'><Typography variant='h2'>Netflare</Typography></Box>
+        <Box marginRight={2}><Typography variant='h4'>Hi {currLogin.name}</Typography></Box>
+      </Box>
+
       {alertUsername&&<Alert severity='error'>Provide a email</Alert>}
       {alertUnvalid&&<Alert severity='error'>Not a valid email</Alert>}
       {alertName&&<Alert severity='error'>Provide a name</Alert>}
       {alertRegistered&&<Alert severity='success'>Registration Successful</Alert>}
 
-      {location.pathname!=='/loggedin' ? <Grid container spacing={1} style={{marginTop: 10, marginBottom: 25}}>
-        <Grid item ><Button href="/login" onClick={()=>setPageChange(!pageChange)} style={{ textDecoration: 'none'}}>login</Button></Grid>
-        <Grid item ><Button href="/register" onClick={()=>setPageChange(!pageChange)} style={{ textDecoration: 'none' }}>register</Button></Grid>
-      </Grid>:
-      <Grid container spacing={1} style={{marginTop: 10, marginBottom: 25}}>
-        <Grid item ><Button  onClick={()=>{setShowAddUser(!showAddUser); setPageChange(!pageChange)}} style={{ textDecoration: 'none'}}>Add User</Button></Grid>
-        <Grid item ><Button  onClick={()=>{setShowRemoveUser(!showRemoveUser);setPageChange(!pageChange)}} style={{ textDecoration: 'none'}}>Remove User</Button></Grid>
-        <Grid item ><Button href="/login" onClick={()=>setPageChange(!pageChange)} style={{ textDecoration: 'none'}}>LogOut</Button></Grid>
-      </Grid>
+      {location.pathname!=='/loggedin' ? 
+      <Box display='flex' flexDirection='row' margin={2}>
+        <Box ><Button href="/login" onClick={()=>setPageChange(!pageChange)} style={{ textDecoration: 'none'}}>login</Button></Box>
+        <Box ><Button href="/register" onClick={()=>setPageChange(!pageChange)} style={{ textDecoration: 'none' }}>register</Button></Box>
+      </Box>:
+      <Box display='flex' flexDirection='row' margin={2}>
+        <Box ><Button  onClick={()=>{setShowAddUser(!showAddUser); setPageChange(!pageChange)}} style={{ textDecoration: 'none'}}>Add User</Button></Box>
+        <Box ><Button  onClick={()=>{setShowRemoveUser(!showRemoveUser);setPageChange(!pageChange)}} style={{ textDecoration: 'none'}}>Remove User</Button></Box>
+        <Box ><Button href="/login" onClick={()=>setPageChange(!pageChange)} style={{ textDecoration: 'none'}}>LogOut</Button></Box>
+      </Box>
       }
       <Routes>
         <Route path='/' element={<Home/>}/>
