@@ -23,7 +23,7 @@ const Login = ({verifyLogin,setAlertUsername,setAlertUnvalid}) => {
         <form className='container' onSubmit={onSubmit}>
             <Grid container rowSpacing={{xs: 2}}>
                 <Grid item xs={12} >
-                    <TextField type='text' label="Username"  size="small"
+                    <TextField type='text' label="Email"  size="small"
                     value={text} onChange={(e)=>setText(e.target.value)} />
                 </Grid>
                 <Grid item alignItems="stretch" style={{ display: "flex" }}>
