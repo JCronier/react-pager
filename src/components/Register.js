@@ -1,7 +1,7 @@
 import {Button, TextField, Grid } from "@mui/material"
 import { registerUser } from '../api/index';
 import { useState } from "react"
-const Register =({setLogins,setAlertUsername,setAlertName,setAlertRegistered})=> {
+const Register =({setLogins,setAlertUsername,setAlertName,setAlertRegistered,setAlertRegisterFail})=> {
     //register user input state
     const[email,setEmail]=useState('')
     const[name,setName]=useState('')
@@ -19,7 +19,10 @@ const Register =({setLogins,setAlertUsername,setAlertName,setAlertRegistered})=>
         registerUser({email,name}).then((response) => {
             setLogins(prev => [...prev, {email,name}])
             setAlertRegistered(true)
-        }).catch((error)=>console.error(`Error: ${error}`))
+        }).catch((error) => {
+            console.error(`Error: ${error}`)
+            setAlertRegisterFail(true)
+        })
         setEmail('')
         setName('')
     }
