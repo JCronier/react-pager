@@ -4,8 +4,8 @@ import AddUserForm from './AddUserForm'
 import MessagingBox from "./MessagingBox";
 import Users from './Users'
 import { deleteUser as removeUser,createUser } from '../api'
-import { Grid, Typography } from "@mui/material"
-const Loggedin = ({currLogin,users,setUsers,showAddUser}) => 
+import { Grid } from "@mui/material"
+const Loggedin = ({currLogin,users,setUsers,showAddUser,showRemoveUser,setAlertName,setAlertUsername}) => 
 {
     const [isMessagingBoxOpen, setIsMessagingBoxOpen] = useState(false);
     const [User, setUser] = useState(null);
@@ -39,18 +39,16 @@ const Loggedin = ({currLogin,users,setUsers,showAddUser}) =>
 
     return (
         <div>
-            <Typography variant='h4'>Hi {currLogin.name}</Typography>
             <Grid container>
                 <Grid item md={12} style={{marginTop: 10, marginBottom: 10}}>
-                    {showAddUser &&<AddUserForm users={users} onAdd={addUser}/>}
+                    {showAddUser &&<AddUserForm users={users} onAdd={addUser} setAlertUsername={setAlertUsername} setAlertName={setAlertName}/>}
                 </Grid>
                 <Grid item md={12}>
-                   <Users users={users} currLogin ={currLogin} onDelete={deleteUser} onUserClicked={onUserClicked}/> 
+                   <Users users={users} currLogin ={currLogin} onDelete={deleteUser} onUserClicked={onUserClicked} showRemoveUser={showRemoveUser}/> 
                 </Grid>
                 
                 { isMessagingBoxOpen ? <MessagingBox userClicked={User} onExitClicked={onExitClicked}/> : <div></div>}
             </Grid>
-            
         </div>
     )
 }

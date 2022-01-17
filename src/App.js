@@ -15,6 +15,8 @@ function App() {
   const [currLogin,setCurrLogin]=useState({})
   //show Add user button
   const [showAddUser,setShowAddUser]=useState(false)
+  //show Remove user button
+  const [showRemoveUser,setShowRemoveUser]=useState(false)
   //show alert messages
   const [pageChange,setPageChange]=useState(false)
   const [alertUsername,setAlertUsername]=useState(false)
@@ -49,18 +51,27 @@ function App() {
   const location =useLocation()
     return (
     <div >
-      <Typography variant='h2'>Netflare</Typography>
-      {alertUsername&&<Alert severity='error'>Provide a username</Alert>}
-      {alertUnvalid&&<Alert severity='error'>Not a valid username</Alert>}
+      <Grid container direction='row' alignItems='end' >
+        <Grid item xs={10}>
+          <Typography variant='h2'>Netflare</Typography>
+        </Grid>
+        <Grid item >
+          {currLogin.name==='undefined'&&<Typography variant='h4'>Hi {currLogin.name}</Typography>}
+        </Grid>
+      </Grid>
+      
+      {alertUsername&&<Alert severity='error'>Provide a email</Alert>}
+      {alertUnvalid&&<Alert severity='error'>Not a valid email</Alert>}
       {alertName&&<Alert severity='error'>Provide a name</Alert>}
-      {alertRegistered&&<Alert severity='error'>Registration Successful</Alert>}
+      {alertRegistered&&<Alert severity='success'>Registration Successful</Alert>}
 
       {location.pathname!=='/loggedin' ? <Grid container spacing={1} style={{marginTop: 10, marginBottom: 25}}>
         <Grid item ><Button href="/login" onClick={()=>setPageChange(!pageChange)} style={{ textDecoration: 'none'}}>login</Button></Grid>
         <Grid item ><Button href="/register" onClick={()=>setPageChange(!pageChange)} style={{ textDecoration: 'none' }}>register</Button></Grid>
       </Grid>:
       <Grid container spacing={1} style={{marginTop: 10, marginBottom: 25}}>
-        <Grid item ><Button  onClick={()=>setShowAddUser(!showAddUser)} style={{ textDecoration: 'none'}}>Add User</Button></Grid>
+        <Grid item ><Button  onClick={()=>{setShowAddUser(!showAddUser); setPageChange(!pageChange)}} style={{ textDecoration: 'none'}}>Add User</Button></Grid>
+        <Grid item ><Button  onClick={()=>{setShowRemoveUser(!showRemoveUser);setPageChange(!pageChange)}} style={{ textDecoration: 'none'}}>Remove User</Button></Grid>
         <Grid item ><Button href="/login" onClick={()=>setPageChange(!pageChange)} style={{ textDecoration: 'none'}}>LogOut</Button></Grid>
       </Grid>
       }
@@ -68,7 +79,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path="/register" element={<Register setLogins={setLogins} setAlertUsername={setAlertUsername} setAlertName={setAlertName} setAlertRegistered={setAlertRegistered}/>}/>
         <Route path="/login" element={<Login verifyLogin={verifyLogin} setAlertUsername={setAlertUsername} setAlertUnvalid={setAlertUnvalid}/>}/>
-        <Route path="/loggedin" element={<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins} showAddUser={showAddUser}/>}/>
+        <Route path="/loggedin" element={<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins} showAddUser={showAddUser} showRemoveUser={showRemoveUser} setAlertUsername={setAlertUsername} setAlertName={setAlertName}/>}/>
       </Routes>
     </div>
   );

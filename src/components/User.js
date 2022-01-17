@@ -1,7 +1,6 @@
-import {FaTimes} from 'react-icons/fa'
 import { Button, Typography,Grid, IconButton } from '@mui/material'
 import CancelIcon from '@mui/icons-material/Cancel'
-const User = ({user, onDelete, onUserClicked}) => {
+const User = ({user, onDelete, onUserClicked,showRemoveUser}) => {
   return (
         <div>
             <Grid container direction='row' alignItems='center'>
@@ -10,9 +9,9 @@ const User = ({user, onDelete, onUserClicked}) => {
                     <Typography variant='h6' style={{textTransform:'none'}}>{user.name}</Typography>
                     </Button>
                 </Grid>
-                <Grid item >
-                    <IconButton onClick={()=>onDelete(user)}><CancelIcon style={{color:'red', fontSize:'30'}} /></IconButton>
-                </Grid>
+                 {showRemoveUser&&<Grid item >
+                   <IconButton onClick={()=>onDelete(user)}><CancelIcon style={{color:'red', fontSize:'30'}} /></IconButton>
+                </Grid>}
             </Grid>
             
         </div>
