@@ -23,6 +23,7 @@ function App() {
   const [alertUnvalid,setAlertUnvalid]=useState(false)
   const [alertName,setAlertName]=useState(false)
   const [alertRegistered,setAlertRegistered]=useState(false)
+  const [alertRegisterFail,setAlertRegisterFail]=useState(false)
 
   //fetch logins
   useEffect(()=>{
@@ -36,6 +37,7 @@ function App() {
     setAlertUnvalid(false)
     setAlertName(false)
     setAlertRegistered(false)
+    setAlertRegisterFail(false)
   },[pageChange])
 
   const navigate = useNavigate()
@@ -64,6 +66,7 @@ function App() {
       {alertUnvalid&&<Alert severity='error'>Not a valid email</Alert>}
       {alertName&&<Alert severity='error'>Provide a name</Alert>}
       {alertRegistered&&<Alert severity='success'>Registration Successful</Alert>}
+      {alertRegisterFail&&<Alert severity='error'>Registration Failed</Alert>}
 
       {location.pathname!=='/loggedin' ? <Grid container spacing={1} style={{marginTop: 10, marginBottom: 25}}>
         <Grid item ><Button href="/login" onClick={()=>setPageChange(!pageChange)} style={{ textDecoration: 'none'}}>login</Button></Grid>
@@ -77,7 +80,7 @@ function App() {
       }
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path="/register" element={<Register setLogins={setLogins} setAlertUsername={setAlertUsername} setAlertName={setAlertName} setAlertRegistered={setAlertRegistered}/>}/>
+        <Route path="/register" element={<Register setLogins={setLogins} setAlertUsername={setAlertUsername} setAlertName={setAlertName} setAlertRegistered={setAlertRegistered} setAlertRegisterFail={setAlertRegisterFail}/>}/>
         <Route path="/login" element={<Login verifyLogin={verifyLogin} setAlertUsername={setAlertUsername} setAlertUnvalid={setAlertUnvalid}/>}/>
         <Route path="/loggedin" element={<Loggedin currLogin ={currLogin} users={logins} setUsers={setLogins} showAddUser={showAddUser} showRemoveUser={showRemoveUser} setAlertUsername={setAlertUsername} setAlertName={setAlertName}/>}/>
       </Routes>
