@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {Grid, TextField,Button} from "@mui/material"
+import {Grid, TextField,Button,Alert} from "@mui/material"
 const AddUserForm = ({onAdd}) => {
     //add user input state
     const[email,setEmail]=useState('')
@@ -8,7 +8,11 @@ const AddUserForm = ({onAdd}) => {
     const onSubmit=(e)=>{
         e.preventDefault()
         if(!email){
-            alert('Provide a user')
+            <Alert severity='error'>Provide a username</Alert>
+            return
+        }
+        if(!name){
+            <Alert severity='error'>Provide a name</Alert>
             return
         }
         onAdd({email,name})

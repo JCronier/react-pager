@@ -1,20 +1,20 @@
 import { useState } from "react"
 import { loginUser } from "../api"
-import {Button, TextField, Grid } from "@mui/material"
-const Login = ({verifyLogin}) => {
+import {Button, TextField, Grid, Alert } from "@mui/material"
+const Login = ({verifyLogin,setAlertUsername,setAlertUnvalid}) => {
     //login input state
     const [text,setText]=useState('')
-
     //enter button event
     const onSubmit=(e)=>{
         e.preventDefault()
         if(!text){
-            alert('Provide a username')
+            setAlertUsername(true)
             return
         }
-        loginUser({ email: text }).then((response) => verifyLogin(text)
-        ).catch((error) => {console.error(`Error: ${error}`) 
-            alert('Not a registered user')
+        loginUser({ email: text }).then((response) => {
+            verifyLogin(text)
+        }).catch((error) => {console.error(`Error: ${error}`) 
+            setAlertUnvalid(true)
         })
         setText('');
     }
